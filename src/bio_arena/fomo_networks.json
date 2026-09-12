@@ -1,0 +1,8 @@
+{
+  "solana": {"balance_id": 1399811149, "relay_id": 792703809, "wallet": "cash_wallet"},
+  "ethereum": {"balance_id": 1, "relay_id": 1, "wallet": "token_wallet"},
+  "base": {"balance_id": 8453, "relay_id": 8453, "wallet": "token_wallet"},
+  "bnb": {"balance_id": 56, "relay_id": 56, "wallet": "token_wallet"},
+  "monad": {"balance_id": 143, "relay_id": 143, "wallet": "token_wallet"},
+  "robinhood": {"balance_id": 4663, "relay_id": 4663, "wallet": "token_wallet"}
+}

@@ -1,0 +1,55 @@
+seed: 20260911
+tick_seconds: 20.0
+decision_schedule:
+  mode: staggered
+  jitter_seconds: 3.0
+  minimum_gap_seconds: 4.0
+  initial_offsets: {worm: 0.0, adult: 7.0, larva: 14.0}
+simulated_ms: 200.0
+# Zero runs continuously until manually stopped or all risk stops are reached.
+round_seconds: 0
+market_symbol: SOLUSDT
+market_poll_seconds: 1.0
+max_quote_age_seconds: 8.0
+initial_cash: 10000.0
+fee_bps: 10.0
+slippage_bps: 5.0
+stop_equity_fraction: 0.20
+cooldown_seconds: 60.0
+opportunity_policy:
+  history_steps: 6
+  minimum_signal: 0.35
+  confirmation_steps: 2
+  max_position_fraction: 0.60
+  rebalance_band: 0.05
+  cost_buffer: 1.25
+  drawdown_penalty: 0.5
+max_position_step: 0.20
+minimum_trade_value: 10.0
+readout_threshold: 0.12
+readout_rate_floor_hz: 2.0
+encoding:
+  return_scale_floor: 0.00015
+  window: 120
+lif:
+  dt_ms: 0.1
+  tau_membrane_ms: 20.0
+  tau_synapse_ms: 5.0
+  resting_mv: -52.0
+  threshold_mv: -45.0
+  reset_mv: -52.0
+  refractory_ms: 2.2
+  delay_ms: 1.8
+  synapse_scale_mv: 0.275
+  incoming_normalization: 150.0
+  background_current_mv: 5.5
+  sensory_base_mv: 8.0
+  sensory_gain_mv: 20.0
+  noise_std_mv: 0.4
+  gap_gain: 0.05
+execution:
+  mode: paper
+  accounts:
+    worm: {adapter: paper, external_account: null}
+    adult: {adapter: paper, external_account: null}
+    larva: {adapter: paper, external_account: null}

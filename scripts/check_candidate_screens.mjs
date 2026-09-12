@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from '../frontend/node_modules/typescript/lib/typescript.js';
+const code=ts.transpile(readFileSync(new URL('../frontend/src/candidateScreens.ts',import.meta.url),'utf8'),{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022});
+const {candidateScreens,collectCandidatePrices}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const asset=(n,extra={})=>({asset_id:`solana:contract${n}`,chain:'solana',address:`contract${n}`,symbol:'SAME',fresh:true,in_trending:true,entry_problem:null,quote:{id:`quote${n}`,asset_id:`solana:contract${n}`,price:n+1,received_at:100,pair_address:'pool1'},...extra});
+const assets=Array.from({length:9},(_,i)=>asset(i));
+const bio={account:{positions:[{asset_id:assets[0].asset_id}]},selection:[{asset_id:assets[8].asset_id}]};
+const cache=new Map();collectCandidatePrices(cache,assets);
+let screens=candidateScreens(bio,[...assets,assets[8],asset(10,{in_trending:false})],cache);
+assert.equal(screens.length,6);assert.equal(new Set(screens.map(s=>s.asset.asset_id)).size,6);
+assert.equal(screens[0].asset.asset_id,assets[8].asset_id);assert.equal(screens[0].reviewed,true);
+assert.ok(screens.every(s=>!s.held));assert.ok(screens.every(s=>s.history.length===1));
+assert.equal(candidateScreens(bio,[],cache).length,0,'Missing slots must not invent candidates');
+assert.equal(candidateScreens(bio,[assets[0]],cache)[0].held,true);
+collectCandidatePrices(cache,assets);assert.equal(cache.get(assets[0].asset_id).points.length,1,'Repeated responses are not price history');
+const wrong=asset(0);wrong.quote.asset_id='solana:anotherContract';wrong.quote.id='wrong';collectCandidatePrices(cache,[wrong]);assert.equal(cache.get(wrong.asset_id).quoteId,'quote0');
+const live=asset(0);
+for(let i=1;i<=75;i++){live.quote={...live.quote,id:`next${i}`,received_at:100+i,price:i};collectCandidatePrices(cache,[live])}
+assert.equal(cache.get(live.asset_id).points.length,60);assert.equal(cache.size,1);
+live.quote={...live.quote,id:'changed',pair_address:'pool2',received_at:176};collectCandidatePrices(cache,[live]);assert.equal(cache.get(live.asset_id).points.length,1,'No traces across pools');
+live.quote={...live.quote,id:'old',received_at:170};collectCandidatePrices(cache,[live]);assert.equal(cache.get(live.asset_id).quoteId,'changed');
+collectCandidatePrices(cache,[]);assert.equal(cache.size,0);
+console.log('Candidate screens: contract deduplication, personal review priority, held/fresh status, empty slots, real samples, bounded history and pool changes passed.');

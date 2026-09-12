@@ -1,0 +1,31 @@
+.venv/
+__pycache__/
+*.pyc
+*.nbc
+*.nbi
+.pytest_cache/
+data/raw/
+data/processed/
+runs/
+frontend/node_modules/
+frontend/dist/
+frontend/dist-vercel-check/
+output/
+.playwright-cli/
+.env
+.env.*
+!.env.example
+*.egg-info/
+.DS_Store
+*.log
+.vercel/
+.private/
+.tools/
+*.tsbuildinfo
+
+# Verified cold experiment bundles
+archives/
+
+# Local verification dependency symlinks
+/.venv
+/frontend/node_modules

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bio-arena"
+version = "0.1.0"
+description = "Auditable connectome-driven LIF paper-trading arena"
+requires-python = ">=3.12"
+dependencies = ["numpy", "scipy", "numba", "pandas", "pyarrow", "openpyxl", "fastapi", "uvicorn", "httpx", "pyyaml", "psutil", "websockets"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+bio_arena = ["fomo_browser.js", "fomo_screen_capture.js", "fomo_networks.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+markers = ["requires_data: needs downloaded and preprocessed connectome datasets"]

@@ -1,0 +1,8 @@
+{
+  "wrapper": "/path/to/playwright_cli.sh",
+  "accounts": {
+    "worm": {"session": "worm-browser", "browser_directory": "/private/worm-browser"},
+    "adult": {"session": "fly-browser", "browser_directory": "/private/fly-browser"},
+    "larva": {"session": "larva-browser", "browser_directory": "/private/larva-browser"}
+  }
+}

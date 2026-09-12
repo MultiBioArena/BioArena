@@ -1,0 +1,40 @@
+{
+  "enabled": false,
+  "source_url": "http://127.0.0.1:8140",
+  "limits": {
+    "buy_usd": "2",
+    "max_buy_usd": "10",
+    "max_fee_usd": "0.30",
+    "max_fee_bps": 300,
+    "max_price_impact_bps": 200,
+    "decision_age_seconds": 45,
+    "cooldown_seconds": 120,
+    "max_buys_per_day": 6,
+    "max_daily_buy_usd": "20",
+    "acknowledge_network_fee": false,
+    "max_positions": 2,
+    "allow_exploration": false,
+    "sell_cooldown_seconds": 0,
+    "max_slippage_bps": 200
+  },
+  "accounts": {
+    "worm": {
+      "enabled": false,
+      "account_ref": "worm-account",
+      "browser_directory": ".private/worm-browser",
+      "session": "worm-execution",
+      "profile": "REPLACE_PROFILE",
+      "user_id": "REPLACE_USER_ID",
+      "cash_wallet": "REPLACE_SOLANA_CASH_WALLET",
+      "token_wallet": "REPLACE_EVM_RECEIVING_WALLET"
+    }
+  },
+  "exits": {
+    "minimum_hold_seconds": 120,
+    "maximum_hold_seconds": 1800,
+    "position_stop_fraction": 0.15,
+    "exit_margin_bps": 100,
+    "retry_seconds": 30,
+    "quote_max_age_seconds": 30
+  }
+}

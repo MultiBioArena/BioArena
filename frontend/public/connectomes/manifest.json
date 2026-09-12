@@ -1,0 +1,68 @@
+{
+  "worm": {
+    "file": "worm.json",
+    "sha256": "71fa9d69b8872df7394d9539e91c092e8d9409b2beee491a0dab16bb9295315e",
+    "source": "https://github.com/openworm/NeuroPAL/blob/85783437bea1112c1e4b1cacaac3e5337e7ce4a4/data/CanonicalPositions/LowResAtlasWithHighResHeadsAndTails.csv",
+    "details": {
+      "atlas_sha256": "bb45477c58f1a6a920fb7a9dcf800bd1d0b2c0e347311fa6745eed6c923f49d7",
+      "source_units": "micrometers",
+      "missing_coordinates": [
+        "CANL",
+        "CANR"
+      ],
+      "transform": "x/800 gives anterior-posterior fraction; dorsal/lateral offsets expanded for readability. Body undulation is a readout-driven illustration.",
+      "name_matching": "AS01 -> AS1 and equivalent zero-padded motor names; all other names exact",
+      "motion": "AVB activity drives forward wave; AVA activity drives reverse wave. This is not a biomechanical simulation."
+    }
+  },
+  "adult": {
+    "file": "adult.json",
+    "sha256": "bca8ce6b6524fa9d54deb2a2f9e283890364261f6c688cbacc0f539c4012d051",
+    "source": "https://raw.githubusercontent.com/flyconnectome/flywire_annotations/8587524c1748ce5ef2080822a2fc890fc03bf597/supplemental_files/Supplemental_file1_neuron_annotations.tsv",
+    "details": {
+      "source_sha256": "9a4f8b2f843196074431ebd7cd883536afa1be86c8a4ce90970441e8be81d1be",
+      "source_units": "4 x 4 x 40 nm voxels, converted to micrometers",
+      "center_um": [
+        495.04,
+        260.992,
+        140.72000000000003
+      ],
+      "isotropic_scale": 0.0038865090018951358,
+      "axis_mapping": "[x, -y, z]",
+      "reference_points": 4696,
+      "sampling": "All simulated cells with valid soma coordinates; remaining points sampled equally from left/right visual classes with seed 20260911.",
+      "context_activity": "Reference cells are static and do not receive invented spikes. 696 simulated cells without soma coordinates are omitted from the spatial view."
+    }
+  },
+  "larva": {
+    "file": "larva.json",
+    "sha256": "1f33ce912d2a420f921263fac40cbed9e8be1cb4c42046cd72dc6a749213df5d",
+    "source": "https://raw.githubusercontent.com/neurodata/bilateral-connectome/0ff9bbe0515504b88ac827c6a31481db47a92ad2/data/elife/meta_data.csv",
+    "details": {
+      "source_sha256": "9f393b4c481d31926aa46d031061a559db7999afe76a6ad7d740db43c6f785f4",
+      "layout": "Curated hemisphere, pair_id and cell-type order; homologous pairs share longitudinal position. Within-type order is deterministic.",
+      "group_order": [
+        "sensories",
+        "ascendings",
+        "PNs",
+        "PNs-somato",
+        "LNs",
+        "LHNs",
+        "MBINs",
+        "KCs",
+        "MBONs",
+        "MB-FBNs",
+        "CNs",
+        "FFNs",
+        "RGNs",
+        "unk",
+        "pre-dSEZs",
+        "dSEZs",
+        "pre-dVNCs",
+        "dVNCs"
+      ],
+      "paired_cells": 2788,
+      "scope": "3016 brain-and-input neurons, not a complete ventral nerve cord. These are organization coordinates, not measured soma positions."
+    }
+  }
+}

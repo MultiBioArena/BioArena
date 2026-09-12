@@ -1,0 +1,6 @@
+node_modules
+dist
+dist-vercel-check
+.env*
+*.tsbuildinfo
+*.log

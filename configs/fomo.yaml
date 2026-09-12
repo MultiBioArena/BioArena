@@ -1,0 +1,103 @@
+# FOMO discovery and DEX reference prices; paper execution only.
+seed: 20260911
+tick_seconds: 30.0
+decision_schedule:
+  mode: staggered
+  jitter_seconds: 5.0
+  minimum_gap_seconds: 5.0
+  initial_offsets:
+    worm: 0.0
+    adult: 10.0
+    larva: 20.0
+simulated_ms: 200.0
+round_seconds: 0
+market_symbol: SOLUSDT
+market_poll_seconds: 1.0
+max_quote_age_seconds: 8.0
+initial_cash: 10000.0
+fee_bps: 10.0
+slippage_bps: 5.0
+stop_equity_fraction: 0.2
+cooldown_seconds: 60.0
+opportunity_policy:
+  history_steps: 6
+  minimum_signal: 0.35
+  confirmation_steps: 2
+  max_position_fraction: 0.6
+  rebalance_band: 0.05
+  cost_buffer: 1.25
+  drawdown_penalty: 0.5
+max_position_step: 0.2
+minimum_trade_value: 10.0
+readout_threshold: 0.12
+readout_rate_floor_hz: 2.0
+encoding:
+  return_scale_floor: 0.00015
+  window: 120
+lif:
+  dt_ms: 0.1
+  tau_membrane_ms: 20.0
+  tau_synapse_ms: 5.0
+  resting_mv: -52.0
+  threshold_mv: -45.0
+  reset_mv: -52.0
+  refractory_ms: 2.2
+  delay_ms: 1.8
+  synapse_scale_mv: 0.275
+  incoming_normalization: 150.0
+  background_current_mv: 5.5
+  sensory_base_mv: 8.0
+  sensory_gain_mv: 20.0
+  noise_std_mv: 0.4
+  gap_gain: 0.05
+execution:
+  mode: paper
+  accounts:
+    worm:
+      adapter: paper
+      external_account: null
+    adult:
+      adapter: paper
+      external_account: null
+    larva:
+      adapter: paper
+      external_account: null
+market_source: fomo_trending
+memecoin:
+  paper_max_positions: 5
+  live_max_positions: 1
+  candidate_refresh_seconds: 60
+  candidate_max_age_seconds: 180
+  quote_poll_seconds: 10
+  quote_max_age_seconds: 30
+  minimum_liquidity_usd: 50000
+  minimum_volume_5m_usd: 500
+  minimum_pool_age_seconds: 600
+  warmup_quotes: 7
+  warmup_seconds: 60
+  bio_warmup_observations: 2
+  new_candidates_per_check: 3
+  max_asset_fraction: 0.2
+  max_total_fraction: 0.6
+  allocation_fraction: 0.12
+  minimum_trade_value: 10.0
+  trade_cooldown_seconds: 60.0
+  minimum_hold_seconds: 120.0
+  position_stop_fraction: 0.15
+  max_pool_fraction: 0.005
+  max_volume_fraction: 0.05
+  fee_bps: 50.0
+  slippage_bps: 50.0
+  network_cost_usd: 0.2
+  entry_margin_bps: 30.0
+  exit_margin_bps: 100.0
+  learning:
+    label_horizon_seconds: 300
+    label_grace_seconds: 120
+    downside_penalty: 0.5
+    learning_rate: 0.05
+    minimum_training_samples: 24
+    validation_samples: 12
+    validation_improvement: 0.95
+    paper_exploration_probability: 0.12
+    exploration_fraction: 0.03
